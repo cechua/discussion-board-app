@@ -10,12 +10,7 @@ import {
 
 const Header = () => {
   return (
-    <Navbar
-      maxWidth="full"
-      height="4rem"
-      isBordered
-      className="shadow mb-4 px-16"
-    >
+    <Navbar maxWidth="full" height="4rem" isBordered className="shadow mb-4">
       <NavbarBrand>
         <Link href="/" className="font-bold">
           Discussion Board
