@@ -1,9 +1,5 @@
-import { signOut } from '@/actions/users/signOut';
 import PostList from '@/components/posts/PostList';
 import Profile from '@/components/profile';
-import { SignIn } from '@/components/users/sign-in';
-import { SignUp } from '@/components/users/sign-up';
-import { Button } from '@nextui-org/react';
 
 export default function Home() {
   return (
@@ -18,10 +14,7 @@ export default function Home() {
       </div>
       <div className="col-span-2">
         <PostList />
-        <SignIn />
-        <form action={signOut}>
-          <Button type="submit">Sign Out</Button>
-        </form>
+        <Profile />
       </div>
       <div className="col-span-1">
         <div>

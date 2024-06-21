@@ -3,7 +3,7 @@
 import { createUser } from '@/actions/users/createUser';
 import { useFormState } from 'react-dom';
 
-export function SignUp() {
+export function SignUpForm() {
   const [formState, action] = useFormState(createUser, {
     errors: {},
   });

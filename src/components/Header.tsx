@@ -7,6 +7,7 @@ import {
   Input,
   Button,
 } from '@nextui-org/react';
+import HeaderProfile from './users/headerProfile';
 
 const Header = () => {
   return (
@@ -22,7 +23,7 @@ const Header = () => {
 
       <NavbarContent justify="end">
         <Button>Create new post </Button>
-        <Button>Profile Image</Button>
+        <HeaderProfile />
       </NavbarContent>
     </Navbar>
   );
