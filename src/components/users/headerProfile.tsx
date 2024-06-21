@@ -1,7 +1,6 @@
 'use client';
 
 import {
-  NavbarItem,
   Button,
   Avatar,
   Popover,
@@ -42,10 +41,9 @@ export default function HeaderProfile() {
           </PopoverTrigger>
           <PopoverContent>
             <div className="p-8">
-              <SignIn provider={authProviders.CREDENTIALS} />
-              <h6 className="w-full text-center border-b border-solid border-black leading-[0] my-4">
+              {/* <h6 className="w-full text-center border-b border-solid border-black leading-[0] my-4">
                 <span className="px-4 bg-white text-black">or</span>
-              </h6>
+              </h6> */}
               <SignIn provider={authProviders.GITHUB} />
             </div>
           </PopoverContent>

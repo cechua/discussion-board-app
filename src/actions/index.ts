@@ -1,1 +1,1 @@
-export { signInGitHub, signInCredentials } from './users/signIn';
+export { signInGitHub } from './users/signIn';

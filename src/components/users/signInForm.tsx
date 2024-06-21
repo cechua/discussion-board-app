@@ -1,9 +1,6 @@
-import { signIn } from '@/auth';
-import { Button, Input } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 import * as actions from '@/actions';
 import { authProviders } from '@/enums/authproviders';
-import FormSubmitButton from '../common/formSubmitButton';
-import SignInCredentialsForm from './signInCredentialsForm';
 interface signInProps {
   provider: authProviders;
 }
@@ -22,12 +19,6 @@ const gitHubButton = (
 );
 export function SignIn({ provider }: signInProps) {
   switch (provider) {
-    case authProviders.CREDENTIALS:
-      return (
-        <div>
-          <SignInCredentialsForm />
-        </div>
-      );
     case authProviders.GITHUB:
       return <div>{gitHubButton}</div>;
     default:
