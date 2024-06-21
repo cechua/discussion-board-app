@@ -5,22 +5,46 @@ interface signInProps {
   provider: authProviders;
 }
 
-const gitHubButton = (
-  <form action={actions.signInGitHub} className="w-full flex justify-center">
-    <Button
-      type="submit"
-      color="secondary"
-      variant="bordered"
-      className="w-full"
-    >
-      Sign In Github
-    </Button>
-  </form>
-);
 export function SignIn({ provider }: signInProps) {
   switch (provider) {
     case authProviders.GITHUB:
-      return <div>{gitHubButton}</div>;
+      return (
+        <div>
+          <form
+            action={actions.signInGitHub}
+            className="w-full flex justify-center"
+          >
+            <Button
+              type="submit"
+              color="secondary"
+              variant="bordered"
+              className="w-full"
+            >
+              Sign In Github
+            </Button>
+          </form>
+        </div>
+      );
+    case authProviders.GOOGLE:
+      return (
+        <div>
+          <div>
+            <form
+              action={actions.signInGoogle}
+              className="w-full flex justify-center"
+            >
+              <Button
+                type="submit"
+                color="primary"
+                variant="bordered"
+                className="w-full"
+              >
+                Sign In Google
+              </Button>
+            </form>
+          </div>
+        </div>
+      );
     default:
       return <div></div>;
   }
