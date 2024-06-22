@@ -6,6 +6,7 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
+  Spinner,
 } from '@nextui-org/react';
 import { signOut, useSession } from 'next-auth/react';
 import { SignIn } from './signInForm';
@@ -20,7 +21,11 @@ export default function HeaderProfile() {
 
   let authContent: React.ReactNode;
   if (session.status === 'loading') {
-    authContent = null;
+    authContent = (
+      <div className="w-10 h-10 rounded-full bg-gray-400 flex justify-center">
+        <Spinner size="sm" color="default" />
+      </div>
+    );
   } else if (session.data?.user) {
     authContent = (
       <Popover placement="bottom">

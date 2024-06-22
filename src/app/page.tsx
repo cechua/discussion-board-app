@@ -14,7 +14,7 @@ export default function Home() {
       </div>
       <div className="col-span-2">
         <PostList />
-        <Profile />
+        {/* <Profile /> */}
       </div>
       <div className="col-span-1">
         <div>
