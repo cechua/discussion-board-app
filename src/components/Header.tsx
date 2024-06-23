@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <Navbar maxWidth="full" height="4rem" isBordered className="shadow mb-4">
       <NavbarBrand>
-        <Link href="/" className="font-bold">
+        <Link href="/" className="font-bold text-2xl">
           Discussion Board
         </Link>
       </NavbarBrand>

@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  /* width */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply bg-inherit;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-200 rounded-xl;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
