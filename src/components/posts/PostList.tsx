@@ -1,6 +1,4 @@
-import { Button, Chip } from '@nextui-org/react';
-import Link from 'next/link';
-import { HeartIcon } from '../common/SvgIcons/HeartIcon';
+import PostItem from './PostItem';
 
 const mockPosts = [
   {
@@ -21,6 +19,7 @@ const mockPosts = [
     content: 'Just sa sample content 2',
     topics: [
       { name: 'testtopic', bgColor: 'bg-stone-800', textColor: 'text-white' },
+      { name: 'testtopic', bgColor: 'bg-amber-800', textColor: 'text-white' },
       { name: 'testtopic', bgColor: 'bg-amber-800', textColor: 'text-white' },
     ],
     user: { name: 'testuser2' }, //userId in actual.
@@ -84,52 +83,18 @@ const mockComments = [
   },
 ];
 
-const PostList = () => {
+interface PostListProps {
+  fetchPosts?: () => Promise<any[]>;
+  isSideContent?: boolean;
+}
+
+const PostList = ({ fetchPosts, isSideContent }: PostListProps) => {
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Posts</h1>
-      <div className="flex flex-col gap-2 border-b-1">
+      <div className="flex flex-col border-b-1">
         {mockPosts.map((post) => {
           return (
-            <div key={post.id} className="border-t-1 p-1">
-              <Link
-                href={`/posts/${post.id}`}
-                className="flex flex-col hover:bg-gray-200 p-2 rounded-md min-h-32 justify-between"
-              >
-                {/*TODO: Move to a component to reuse on post show */}
-                <div className="flex flex-col mb-2">
-                  <div className="flex gap-4 items-center">
-                    <h3 className="font-bold text-lg">{post.title}</h3>
-                    {/*TODO: Change this to avatar of user and component to be reused*/}
-                    <div className="flex items-center gap-1">
-                      <div className="w-4 h-4 rounded-full bg-gray-300"></div>{' '}
-                      <span className="text-sm">{post.user.name}</span>
-                    </div>
-                    <span className="text-sm">1h ago</span>
-                    <ul className="flex gap-1">
-                      {post.topics.map((topic, i) => {
-                        return (
-                          <li key={i}>
-                            <Chip
-                              size="sm"
-                              classNames={{
-                                base: topic.bgColor,
-                                content: topic.textColor,
-                              }}
-                            >
-                              {topic.name}
-                            </Chip>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                </div>
-
-                <p className="flex-1">{post.content}</p>
-                <p>2 comments</p>
-              </Link>
-            </div>
+            <PostItem key={post.id} post={post} isSideContent={isSideContent} />
           );
         })}
       </div>

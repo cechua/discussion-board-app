@@ -30,6 +30,7 @@ export default function HeaderProfile() {
     authContent = (
       <Popover placement="bottom">
         <PopoverTrigger>
+          {/*TODO: Use AvatarIconWithUser if name is needed */}
           <Avatar src={session.data.user.image || ''} />
         </PopoverTrigger>
         <PopoverContent>

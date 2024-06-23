@@ -6,23 +6,22 @@ export default function Home() {
     <div className="grid grid-cols-4 gap-4 p-4 h-screen">
       <div className="col-span-1">
         <div>
-          <h1 className="text-xl m-2">Trending topics</h1>
+          <h1 className="text-xl font-bold mb-4 h-8">Trending Topics</h1>
         </div>
         <div>
-          <h1 className="text-xl m-2">Followed Topics</h1>
+          <h1 className="text-xl font-bold mb-4 h-8">Trending Posts</h1>
+          <PostList isSideContent />
         </div>
       </div>
       <div className="col-span-2">
+        <h1 className="text-2xl font-bold mb-4 h-8">Posts</h1>
         <PostList />
         {/* <Profile /> */}
       </div>
       <div className="col-span-1">
         <div>
-          <h1 className="text-xl m-2">Trending Posts</h1>
-        </div>
-        <div>
-          <h1 className="text-xl m-2">Recently Viewed Posts</h1>
-          {/* <SignUp /> */}
+          <h1 className="text-xl font-bold mb-4 h-8">Recently Viewed Posts</h1>
+          <PostList isSideContent />
         </div>
       </div>
     </div>
