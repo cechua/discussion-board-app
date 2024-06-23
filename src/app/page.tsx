@@ -4,7 +4,7 @@ import TopicList from '@/components/topics/TopicList';
 
 export default function Home() {
   return (
-    <div className="grid grid-cols-5 gap-4 px-4 h-screen">
+    <div className="grid grid-cols-5 gap-4 px-6 h-screen">
       <div className="collapse lg:visible">
         <div>
           <h1 className="text-xl font-bold mb-4 h-8">Trending Topics</h1>
