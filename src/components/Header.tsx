@@ -11,7 +11,13 @@ import HeaderProfile from './users/headerProfile';
 
 const Header = () => {
   return (
-    <Navbar maxWidth="full" height="4rem" isBordered className="shadow mb-4">
+    <Navbar
+      maxWidth="full"
+      height="4rem"
+      isBordered
+      className="shadow mb-4"
+      classNames={{ wrapper: 'px-2 xl:px-6' }}
+    >
       <NavbarBrand>
         <Link href="/" className="font-bold text-2xl">
           Discussion Board
