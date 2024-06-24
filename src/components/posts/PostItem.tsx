@@ -27,7 +27,7 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
               <AvatarIconWithUser imageSrc="" userName={post.user.name} />
               <span className="text-sm">1h ago</span>
               <ul className="flex gap-1">
-                {post.topics.map((topic, i) => {
+                {post.topics.map((topic: any, i: number) => {
                   return (
                     <li key={i}>
                       <Chip
@@ -52,12 +52,7 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
         </p>
         <p onClick={onOpen}>2 comments</p>
       </div>
-      <PostModal
-        isOpen={isOpen}
-        onOpen={onOpen}
-        onOpenChange={onOpenChange}
-        post={post}
-      />
+      <PostModal isOpen={isOpen} onOpenChange={onOpenChange} post={post} />
     </>
   );
 
@@ -80,7 +75,7 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
             <span className="text-sm">1h ago</span>
           </div>
           <ul className="flex gap-1">
-            {post.topics.map((topic, i) => {
+            {post.topics.map((topic: any, i: any) => {
               return (
                 <li key={i}>
                   <Chip

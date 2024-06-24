@@ -15,12 +15,11 @@ import Link from 'next/link';
 
 interface PostModalProps {
   isOpen: boolean;
-  onOpen: () => void;
   onOpenChange: () => void;
   post: any /*change to Post*/;
 }
 
-const PostModal = ({ isOpen, onOpen, onOpenChange, post }: PostModalProps) => {
+const PostModal = ({ isOpen, onOpenChange, post }: PostModalProps) => {
   return (
     <>
       <Modal
@@ -46,7 +45,7 @@ const PostModal = ({ isOpen, onOpen, onOpenChange, post }: PostModalProps) => {
               <span className="text-sm">1h ago</span>
             </div>
             <ul className="flex gap-1">
-              {post.topics.map((topic, i) => {
+              {post.topics.map((topic: any, i: number) => {
                 return (
                   <li key={i}>
                     <Chip

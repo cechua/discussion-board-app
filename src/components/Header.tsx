@@ -12,13 +12,13 @@ import {
   Popover,
   PopoverTrigger,
   PopoverContent,
+  useDisclosure,
 } from '@nextui-org/react';
 import HeaderProfile from './users/headerProfile';
 import { useState } from 'react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   return (
     <Navbar
       maxWidth="full"
@@ -26,6 +26,8 @@ const Header = () => {
       isBordered
       className="shadow mb-4"
       classNames={{ wrapper: 'px-2 xl:px-6' }}
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarBrand>
         <Link href="/" className="font-bold text-2xl">
@@ -37,7 +39,7 @@ const Header = () => {
       </NavbarContent>
 
       <NavbarContent justify="end" className="hidden sm:flex">
-        <Button>Create new post </Button>
+        <Link href="/posts/new">Create new post</Link>
         <HeaderProfile />
       </NavbarContent>
 
@@ -55,14 +57,16 @@ const Header = () => {
 
       <NavbarContent justify="end" className="flex sm:hidden">
         <NavbarMenuToggle
-          aria-label={isSearchOpen ? 'Close menu' : 'Open menu'}
+          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           className="sm:hidden"
         />
       </NavbarContent>
 
       <NavbarMenu className="flex">
         <HeaderProfile />
-        <Button>Create new post </Button>
+        <Link href="/posts/new" onClick={() => setIsMenuOpen(false)}>
+          Create new post
+        </Link>
       </NavbarMenu>
     </Navbar>
   );
