@@ -1,15 +1,24 @@
+'use client';
+
 import Link from 'next/link';
 import {
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
   Input,
   Button,
+  NavbarMenuToggle,
+  NavbarMenu,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
 } from '@nextui-org/react';
 import HeaderProfile from './users/headerProfile';
+import { useState } from 'react';
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   return (
     <Navbar
       maxWidth="full"
@@ -23,14 +32,38 @@ const Header = () => {
           Discussion Board
         </Link>
       </NavbarBrand>
-      <NavbarContent justify="center">
+      <NavbarContent justify="center" className="hidden sm:flex">
         <Input type="text" placeholder="searchinputhere" />
       </NavbarContent>
 
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className="hidden sm:flex">
         <Button>Create new post </Button>
         <HeaderProfile />
       </NavbarContent>
+
+      <NavbarContent justify="center" className="flex sm:hidden">
+        <Popover placement="bottom">
+          <PopoverTrigger>
+            {/*TODO: Change to search icon */}
+            <Button>Search</Button>
+          </PopoverTrigger>
+          <PopoverContent>
+            <Input type="text" placeholder="searchinputhere" />
+          </PopoverContent>
+        </Popover>
+      </NavbarContent>
+
+      <NavbarContent justify="end" className="flex sm:hidden">
+        <NavbarMenuToggle
+          aria-label={isSearchOpen ? 'Close menu' : 'Open menu'}
+          className="sm:hidden"
+        />
+      </NavbarContent>
+
+      <NavbarMenu className="flex">
+        <HeaderProfile />
+        <Button>Create new post </Button>
+      </NavbarMenu>
     </Navbar>
   );
 };
