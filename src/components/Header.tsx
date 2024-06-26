@@ -24,7 +24,7 @@ const Header = () => {
       maxWidth="full"
       height="4rem"
       isBordered
-      className="shadow mb-4"
+      className="shadow"
       classNames={{ wrapper: 'px-2 xl:px-6' }}
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
