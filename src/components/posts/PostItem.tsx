@@ -7,6 +7,9 @@ import PostModal from './PostModal';
 import TopicChip from '../common/TopicChip';
 import { PostWithData } from '@/db/queries/posts';
 import type { Topic } from '@prisma/client';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+dayjs.extend(relativeTime);
 interface PostItemProps {
   post: PostWithData;
   isSideContent?: boolean;
@@ -30,7 +33,7 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
                 imageSrc={post.user.image || ''}
                 userName={post.user.name || ''}
               />
-              <span className="text-sm">1h ago</span>
+              <span className="text-sm">{dayjs(post.createdAt).fromNow()}</span>
               <ul className="flex gap-1">
                 {post.topics.map((topic) => {
                   return (
@@ -71,7 +74,7 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
               imageSrc={post.user.image || ''}
               userName={post.user.name || ''}
             />
-            <span className="text-sm">1h ago</span>
+            <span className="text-sm">{dayjs(post.createdAt).fromNow()}</span>
           </div>
           <ul className="flex gap-1">
             {post.topics.map((topic) => {
