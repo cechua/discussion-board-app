@@ -5,6 +5,7 @@ import { Button, Chip, useDisclosure } from '@nextui-org/react';
 import { HeartIcon } from '../common/SvgIcons/HeartIcon';
 import AvatarIconWithUser from '../common/AvatarIconWithUser';
 import PostModal from './PostModal';
+import TopicChip from '../common/TopicChip';
 interface PostItemProps {
   post: any /*Change to Post type once db is created */;
   isSideContent?: boolean;
@@ -30,15 +31,11 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
                 {post.topics.map((topic: any, i: number) => {
                   return (
                     <li key={i}>
-                      <Chip
-                        size="sm"
-                        classNames={{
-                          base: topic.bgColor,
-                          content: topic.textColor,
-                        }}
-                      >
-                        {topic.name}
-                      </Chip>
+                      <TopicChip
+                        name={topic.name}
+                        bgColor={topic.bgColor}
+                        textColor={topic.textColor}
+                      />
                     </li>
                   );
                 })}
@@ -78,15 +75,11 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
             {post.topics.map((topic: any, i: any) => {
               return (
                 <li key={i}>
-                  <Chip
-                    size="sm"
-                    classNames={{
-                      base: topic.bgColor,
-                      content: topic.textColor,
-                    }}
-                  >
-                    {topic.name}
-                  </Chip>
+                  <TopicChip
+                    name={topic.name}
+                    bgColor={topic.bgColor}
+                    textColor={topic.textColor}
+                  />
                 </li>
               );
             })}
