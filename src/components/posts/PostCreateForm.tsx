@@ -13,32 +13,32 @@ const mockTopics = [
   {
     id: 1,
     name: 'testtopic',
-    bgColor: 'bg-stone-800',
-    textColor: 'text-white',
+    bgColor: '3f3ff1',
+    textColor: 'eeeeee',
   },
   {
     id: 2,
     name: 'qwe',
-    bgColor: 'bg-amber-800',
-    textColor: 'text-white',
+    bgColor: '33336b',
+    textColor: 'eeeeee',
   },
   {
     id: 3,
     name: 'ewq',
-    bgColor: 'bg-amber-800',
-    textColor: 'text-white',
+    bgColor: '47ba49',
+    textColor: 'eeeeee',
   },
   {
     id: 4,
     name: 'rr',
-    bgColor: 'bg-amber-800',
-    textColor: 'text-white',
+    bgColor: '87842c',
+    textColor: 'eeeeee',
   },
   {
     id: 5,
     name: 'tt',
-    bgColor: 'bg-amber-800',
-    textColor: 'text-white',
+    bgColor: '7e41b2',
+    textColor: 'eeeeee',
   },
 ];
 

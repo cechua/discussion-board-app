@@ -7,8 +7,8 @@ const mockPosts = [
     content:
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis maiores corrupti at, quia amet nostrum. In ab amet deleniti tempora id quis, laborum, delectus praesentium ipsa fugit, quae aperiam quibusdam.',
     topics: [
-      { name: 'testtopic', bgColor: 'bg-stone-800', textColor: 'text-white' },
-      { name: 'extra', bgColor: 'bg-yellow-800', textColor: 'text-white' },
+      { name: 'testtopic', bgColor: '3f3ff1', textColor: 'eeeeee' },
+      { name: 'extra', bgColor: '87842c', textColor: 'eeeeee' },
     ],
     user: { name: 'testuser1' }, //userId in actual.
     comment_count: 2,
@@ -18,9 +18,9 @@ const mockPosts = [
     title: 'Test Title 2',
     content: 'Just sa sample content 2',
     topics: [
-      { name: 'testtopic', bgColor: 'bg-stone-800', textColor: 'text-white' },
-      { name: 'testtopic', bgColor: 'bg-amber-800', textColor: 'text-white' },
-      { name: 'testtopic', bgColor: 'bg-amber-800', textColor: 'text-white' },
+      { name: 'testtopic', bgColor: '3f3ff1', textColor: 'eeeeee' },
+      { name: 'testtopic', bgColor: '7e41b2', textColor: 'eeeeee' },
+      { name: 'testtopic', bgColor: '7e41b2', textColor: 'eeeeee' },
     ],
     user: { name: 'testuser2' }, //userId in actual.
     comment_count: 1,
@@ -30,8 +30,8 @@ const mockPosts = [
     title: 'Test Title 3',
     content: 'Just sa sample content 3',
     topics: [
-      { name: 'testtopic', bgColor: 'bg-orange-800', textColor: 'text-white' },
-      { name: 'testtopic', bgColor: 'bg-stone-800', textColor: 'text-white' },
+      { name: 'testtopic', bgColor: '7e41b2', textColor: 'eeeeee' },
+      { name: 'testtopic', bgColor: '3f3ff1', textColor: 'eeeeee' },
     ],
     user: { name: 'testuser2' }, //userId in actual.
     comment_count: 1,

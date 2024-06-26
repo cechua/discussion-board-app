@@ -13,11 +13,10 @@ const TopicChip = ({ name, bgColor, textColor, onClose }: TopicChipProps) => {
   return (
     <Chip
       size="sm"
-      classNames={{
-        base: bgColor,
-        content: textColor,
-        closeButton: textColor,
-      }}
+      style={{
+        backgroundColor: `#${bgColor}`,
+        color: `#${textColor}`,
+      }} /*Used inline style for dynamic color using hex rgb */
       onClose={onClose}
     >
       {name}
