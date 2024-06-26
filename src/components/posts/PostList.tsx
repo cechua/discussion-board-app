@@ -1,4 +1,3 @@
-import { fetchTopics, fetchUsers } from '@/db/queries/topics';
 import PostItem from './PostItem';
 import { PostWithData } from '@/db/queries/posts';
 
