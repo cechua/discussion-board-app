@@ -6,17 +6,16 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Button,
-  useDisclosure,
-  Chip,
 } from '@nextui-org/react';
 import AvatarIconWithUser from '../common/AvatarIconWithUser';
 import Link from 'next/link';
+import { PostWithData } from '@/db/queries/posts';
+import TopicChip from '../common/TopicChip';
 
 interface PostModalProps {
   isOpen: boolean;
   onOpenChange: () => void;
-  post: any /*change to Post*/;
+  post: PostWithData;
 }
 
 const PostModal = ({ isOpen, onOpenChange, post }: PostModalProps) => {
@@ -37,26 +36,25 @@ const PostModal = ({ isOpen, onOpenChange, post }: PostModalProps) => {
           <ModalHeader className="flex flex-col gap-1">
             <div className="flex gap-4 items-center">
               <Link href={`/posts/${post.id}`}>
-                <h3 className="font-bold text-lg hover:underline cursor-pointer">
+                <h3 className="font-bold text-lg capitalize hover:underline cursor-pointer">
                   {post.title}
                 </h3>
               </Link>
-              <AvatarIconWithUser imageSrc="" userName={post.user.name} />
+              <AvatarIconWithUser
+                imageSrc={post.user.image || ''}
+                userName={post.user.name || ''}
+              />
               <span className="text-sm">1h ago</span>
             </div>
             <ul className="flex gap-1">
-              {post.topics.map((topic: any, i: number) => {
+              {post.topics.map((topic) => {
                 return (
-                  <li key={i}>
-                    <Chip
-                      size="sm"
-                      classNames={{
-                        base: topic.bgColor,
-                        content: topic.textColor,
-                      }}
-                    >
-                      {topic.name}
-                    </Chip>
+                  <li key={topic.id}>
+                    <TopicChip
+                      name={topic.topicName}
+                      bgColor={topic.backgroundColor}
+                      textColor={topic.textColor}
+                    />
                   </li>
                 );
               })}

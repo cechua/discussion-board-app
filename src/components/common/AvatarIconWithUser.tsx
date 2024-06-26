@@ -1,3 +1,5 @@
+import { Avatar } from '@nextui-org/react';
+
 interface AvatarIconWithUserProps {
   imageSrc: string;
   userName: string;
@@ -11,7 +13,7 @@ const AvatarIconWithUser = ({
 }: AvatarIconWithUserProps) => {
   return (
     <div className="flex items-center gap-1">
-      <div className="w-4 h-4 rounded-full bg-gray-300"></div>{' '}
+      <Avatar src={imageSrc} className="w-6 h-6" />
       <span className="text-sm">{userName}</span>
     </div>
   );

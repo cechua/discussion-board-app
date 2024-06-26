@@ -1,13 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { Button, Chip, useDisclosure } from '@nextui-org/react';
-import { HeartIcon } from '../common/SvgIcons/HeartIcon';
+import { useDisclosure } from '@nextui-org/react';
 import AvatarIconWithUser from '../common/AvatarIconWithUser';
 import PostModal from './PostModal';
 import TopicChip from '../common/TopicChip';
+import { PostWithData } from '@/db/queries/posts';
+import type { Topic } from '@prisma/client';
 interface PostItemProps {
-  post: any /*Change to Post type once db is created */;
+  post: PostWithData;
   isSideContent?: boolean;
 }
 
@@ -19,21 +20,24 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
         <div className="flex flex-col">
           <div className="flex flex-col items-start xl:flex-row xl:items-center xl:gap-4">
             <h3
-              className="font-bold text-lg hover:cursor-pointer"
+              className="font-bold text-lg capitalize hover:cursor-pointer"
               onClick={onOpen}
             >
               {post.title}
             </h3>
             <div className="flex gap-4 items-center">
-              <AvatarIconWithUser imageSrc="" userName={post.user.name} />
+              <AvatarIconWithUser
+                imageSrc={post.user.image || ''}
+                userName={post.user.name || ''}
+              />
               <span className="text-sm">1h ago</span>
               <ul className="flex gap-1">
-                {post.topics.map((topic: any, i: number) => {
+                {post.topics.map((topic) => {
                   return (
-                    <li key={i}>
+                    <li key={topic.id}>
                       <TopicChip
-                        name={topic.name}
-                        bgColor={topic.bgColor}
+                        name={topic.topicName}
+                        bgColor={topic.backgroundColor}
                         textColor={topic.textColor}
                       />
                     </li>
@@ -59,25 +63,23 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
         <div className="flex flex-col gap-2">
           <div className="flex gap-4 items-center">
             <Link href={`/posts/${post.id}`}>
-              <h3 className="font-bold text-lg hover:underline">
+              <h3 className="font-bold text-lg capitalize hover:underline">
                 {post.title}
               </h3>
             </Link>
-
-            {/*TODO: Change this to avatar of user and component to be reused*/}
-            <div className="flex items-center gap-1">
-              <div className="w-4 h-4 rounded-full bg-gray-300"></div>{' '}
-              <span className="text-sm">{post.user.name}</span>
-            </div>
+            <AvatarIconWithUser
+              imageSrc={post.user.image || ''}
+              userName={post.user.name || ''}
+            />
             <span className="text-sm">1h ago</span>
           </div>
           <ul className="flex gap-1">
-            {post.topics.map((topic: any, i: any) => {
+            {post.topics.map((topic) => {
               return (
-                <li key={i}>
+                <li key={topic.id}>
                   <TopicChip
-                    name={topic.name}
-                    bgColor={topic.bgColor}
+                    name={topic.topicName}
+                    bgColor={topic.backgroundColor}
                     textColor={topic.textColor}
                   />
                 </li>
