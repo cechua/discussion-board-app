@@ -16,6 +16,7 @@ import {
 } from '@nextui-org/react';
 import HeaderProfile from './users/headerProfile';
 import { useState } from 'react';
+import { AddIcon } from './common/SvgIcons/AddIcon';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,9 +40,31 @@ const Header = () => {
       </NavbarContent>
 
       <NavbarContent justify="end" className="hidden sm:flex">
-        <Link href="/posts/new">Create new post</Link>
+        <Link href="/posts/new" onClick={() => setIsMenuOpen(false)}>
+          <Button
+            color="primary"
+            variant="bordered"
+            startContent={<AddIcon fill="#006FEE" filled />}
+          >
+            Create new post
+          </Button>
+        </Link>
         <HeaderProfile />
       </NavbarContent>
+
+      {/*Mobile View */}
+      <NavbarMenu className="flex">
+        <HeaderProfile />
+        <Link href="/posts/new" onClick={() => setIsMenuOpen(false)}>
+          <Button
+            color="primary"
+            variant="bordered"
+            startContent={<AddIcon fill="#006FEE" filled />}
+          >
+            Create new post
+          </Button>
+        </Link>
+      </NavbarMenu>
 
       <NavbarContent justify="center" className="flex sm:hidden">
         <Popover placement="bottom">
@@ -61,13 +84,6 @@ const Header = () => {
           className="sm:hidden"
         />
       </NavbarContent>
-
-      <NavbarMenu className="flex">
-        <HeaderProfile />
-        <Link href="/posts/new" onClick={() => setIsMenuOpen(false)}>
-          Create new post
-        </Link>
-      </NavbarMenu>
     </Navbar>
   );
 };

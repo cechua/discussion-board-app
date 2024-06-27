@@ -7,7 +7,7 @@ export default function Home() {
     <div className="grid grid-cols-12 gap-4 h-screen px-2 xl:px-6">
       <div className="flex flex-col items-center border-r-2 pt-4 collapse col-span-2 xl:visible">
         <div>
-          <h1 className="text-xl font-bold mb-4 h-8">Trending Topics</h1>
+          <h1 className="text-xl font-bold mb-4 h-8">Available Topics</h1>
           <TopicList />
         </div>
         {/* <div>
