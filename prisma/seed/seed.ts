@@ -117,11 +117,11 @@ async function createInitialTopics() {
     },
   });
   const worldNewsTopic = await prisma.topic.upsert({
-    where: { topicName: 'world news' },
+    where: { topicName: 'worldnews' },
     update: {},
     create: {
       id: '2',
-      topicName: 'world news',
+      topicName: 'worldnews',
       description: 'News across the world.',
       backgroundColor: 'A52019',
       textColor: 'ffffff',
@@ -161,12 +161,12 @@ async function createInitialTopics() {
     },
   });
   const tvshowTopic = await prisma.topic.upsert({
-    where: { topicName: 'music' },
+    where: { topicName: 'tvshow' },
     update: {},
     create: {
       id: '6',
-      topicName: 'tv show',
-      description: 'All about tvshow.',
+      topicName: 'tvshow',
+      description: 'All about tv shows.',
       backgroundColor: '922B3E',
       textColor: 'ffffff',
     },
@@ -190,13 +190,51 @@ async function createInitialPosts() {
     update: {},
     create: {
       id: '1',
-      title: 'technology',
+      title: 'Technology is advancing',
       content:
-        'Anything tech. web, mobile phones, computers, ai, data science, innovation etc',
+        'Technologies are advancing in an accelerated pace compared to the past centuries. What are your thoughts or any innovation you are excited about?',
       userId: '1',
       topics: {
         connect: [{ id: '1' }, { id: '2' }],
       },
+    },
+  });
+}
+
+async function createInitialComments() {
+  const technologyPostComments = await prisma.comment.upsert({
+    where: { id: '1' },
+    update: {},
+    create: {
+      id: '1',
+      postId: '1',
+      commentMessage: 'Very excited for the upcoming years about tech!',
+      userId: '1',
+      parentId: null,
+    },
+  });
+  const technologyCommentToComment = await prisma.comment.upsert({
+    where: { id: '2' },
+    update: {},
+    create: {
+      id: '2',
+      postId: '1',
+      commentMessage:
+        'Same, Particularly the innovation to automotives and self-driving!',
+      userId: '2',
+      parentId: '1',
+    },
+  });
+  const technologyPostComments2 = await prisma.comment.upsert({
+    where: { id: '3' },
+    update: {},
+    create: {
+      id: '3',
+      postId: '1',
+      commentMessage:
+        'Please post more on all the updates about iPhone for the coming years. Cheers',
+      userId: '3',
+      parentId: null,
     },
   });
 }
@@ -207,6 +245,9 @@ createInitialMockUsers()
   })
   .then(async () => {
     createInitialPosts();
+  })
+  .then(async () => {
+    createInitialComments();
   })
   .then(async () => {
     await prisma.$disconnect();
