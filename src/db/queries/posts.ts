@@ -45,3 +45,22 @@ export function fetchPostsByTopic(topicName: string): Promise<PostWithData[]> {
     },
   });
 }
+
+export function fetchPostById(postId: string) {
+  return db.post.findFirst({
+    where: {
+      id: postId,
+    },
+    include: {
+      topics: {
+        select: {
+          id: true,
+          topicName: true,
+          backgroundColor: true,
+          textColor: true,
+        },
+      },
+      user: { select: { name: true, image: true } },
+    },
+  });
+}

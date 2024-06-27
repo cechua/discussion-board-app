@@ -6,7 +6,6 @@ import AvatarIconWithUser from '../common/AvatarIconWithUser';
 import PostModal from './PostModal';
 import TopicChip from '../common/TopicChip';
 import { PostWithData } from '@/db/queries/posts';
-import type { Topic } from '@prisma/client';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 dayjs.extend(relativeTime);
