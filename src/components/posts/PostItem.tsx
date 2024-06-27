@@ -64,18 +64,11 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
     <div className="flex flex-col hover:bg-gray-100 p-2 rounded-md min-h-20 justify-between">
       <div className="flex flex-col pb-2">
         <div className="flex flex-col gap-2">
-          <div className="flex gap-4 items-center">
-            <Link href={`/posts/${post.id}`}>
-              <h3 className="font-bold text-lg capitalize hover:underline">
-                {post.title}
-              </h3>
-            </Link>
-            <AvatarIconWithUser
-              imageSrc={post.user.image || ''}
-              userName={post.user.name || ''}
-            />
-            <span className="text-sm">{dayjs(post.createdAt).fromNow()}</span>
-          </div>
+          <Link href={`/posts/${post.id}`}>
+            <h3 className="font-bold text-lg capitalize hover:underline">
+              {post.title}
+            </h3>
+          </Link>
           <ul className="flex gap-1">
             {post.topics.map((topic) => {
               return (
@@ -89,6 +82,13 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
               );
             })}
           </ul>
+          <div className="flex gap-2 items-center">
+            <AvatarIconWithUser
+              imageSrc={post.user.image || ''}
+              userName={post.user.name || ''}
+            />
+            <span className="text-sm">{dayjs(post.createdAt).fromNow()}</span>
+          </div>
         </div>
       </div>
     </div>
