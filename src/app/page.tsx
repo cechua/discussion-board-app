@@ -17,7 +17,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col items-center pt-4 row-span-full xl:row-auto col-span-12 xl:col-span-7">
         <div>
-          <h1 className="text-2xl font-bold mb-4 h-8">Posts</h1>
+          <h1 className="text-2xl font-bold mb-4 h-8 hidden xl:block">Posts</h1>
           <PostList fetchPosts={() => fetchAllPosts()} />
         </div>
       </div>

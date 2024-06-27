@@ -53,18 +53,6 @@ const Header = () => {
       </NavbarContent>
 
       {/*Mobile View */}
-      <NavbarMenu className="flex">
-        <HeaderProfile />
-        <Link href="/posts/new" onClick={() => setIsMenuOpen(false)}>
-          <Button
-            color="primary"
-            variant="bordered"
-            startContent={<AddIcon fill="#006FEE" filled />}
-          >
-            Create new post
-          </Button>
-        </Link>
-      </NavbarMenu>
 
       <NavbarContent justify="center" className="flex sm:hidden">
         <Popover placement="bottom">
@@ -76,13 +64,13 @@ const Header = () => {
             <Input type="text" placeholder="searchinputhere" />
           </PopoverContent>
         </Popover>
+        <Link href="/posts/new" onClick={() => setIsMenuOpen(false)}>
+          <AddIcon fill="#006FEE" filled />
+        </Link>
       </NavbarContent>
 
       <NavbarContent justify="end" className="flex sm:hidden">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          className="sm:hidden"
-        />
+        <HeaderProfile />
       </NavbarContent>
     </Navbar>
   );
