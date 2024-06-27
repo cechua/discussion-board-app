@@ -1,4 +1,3 @@
-'use client';
 import AvatarIconWithUser from '@/components/common/AvatarIconWithUser';
 import TopicChip from '@/components/common/TopicChip';
 import { PostWithData, fetchPostById } from '@/db/queries/posts';
@@ -6,6 +5,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import CommentsList from '../comments/CommentsList';
+import CommentsCreateForm from '../comments/CommentsCreateForm';
 dayjs.extend(relativeTime);
 interface PostShowProps {
   post: PostWithData;
@@ -48,6 +49,10 @@ const PostShow = ({ post }: PostShowProps) => {
         </div>
 
         <p className="flex-1 hover:cursor-pointer pt-2">{post.content}</p>
+        <div className="mt-8 xl:mt-16">
+          <CommentsCreateForm postId={post.id} />
+          <CommentsList postId={post.id} />
+        </div>
       </div>
     </div>
   );
