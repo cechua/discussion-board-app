@@ -42,11 +42,13 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
                 {post.topics.map((topic) => {
                   return (
                     <li key={topic.id}>
-                      <TopicChip
-                        name={topic.topicName}
-                        bgColor={topic.backgroundColor}
-                        textColor={topic.textColor}
-                      />
+                      <Link href={`/topics/${topic.topicName}`}>
+                        <TopicChip
+                          name={topic.topicName}
+                          bgColor={topic.backgroundColor}
+                          textColor={topic.textColor}
+                        />
+                      </Link>
                     </li>
                   );
                 })}
@@ -77,11 +79,13 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
             {post.topics.map((topic) => {
               return (
                 <li key={topic.id}>
-                  <TopicChip
-                    name={topic.topicName}
-                    bgColor={topic.backgroundColor}
-                    textColor={topic.textColor}
-                  />
+                  <Link href={`/topics/${topic.topicName}`}>
+                    <TopicChip
+                      name={topic.topicName}
+                      bgColor={topic.backgroundColor}
+                      textColor={topic.textColor}
+                    />
+                  </Link>
                 </li>
               );
             })}

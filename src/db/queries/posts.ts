@@ -26,3 +26,22 @@ export function fetchAllPosts(): Promise<PostWithData[]> {
     },
   });
 }
+
+export function fetchPostsByTopic(topicName: string): Promise<PostWithData[]> {
+  return db.post.findMany({
+    where: {
+      topics: { some: { topicName: topicName } },
+    },
+    include: {
+      topics: {
+        select: {
+          id: true,
+          topicName: true,
+          backgroundColor: true,
+          textColor: true,
+        },
+      },
+      user: { select: { name: true, image: true } },
+    },
+  });
+}

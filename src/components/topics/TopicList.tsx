@@ -1,5 +1,6 @@
 import { fetchTopics } from '@/db/queries/topics';
 import TopicChip from '../common/TopicChip';
+import Link from 'next/link';
 
 const TopicList = async () => {
   const topics = await fetchTopics();
@@ -9,11 +10,13 @@ const TopicList = async () => {
         {topics.map((topic, i) => {
           return (
             <li key={i}>
-              <TopicChip
-                name={topic.topicName}
-                bgColor={topic.backgroundColor}
-                textColor={topic.textColor}
-              />
+              <Link href={`/topics/${topic.topicName}`}>
+                <TopicChip
+                  name={topic.topicName}
+                  bgColor={topic.backgroundColor}
+                  textColor={topic.textColor}
+                />
+              </Link>
             </li>
           );
         })}
