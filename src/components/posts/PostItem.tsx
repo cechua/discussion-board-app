@@ -28,13 +28,17 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
             >
               {post.title}
             </h3>
-            <div className="flex gap-4 items-center">
-              <AvatarIconWithUser
-                imageSrc={post.user.image || ''}
-                userName={post.user.name || ''}
-              />
-              <span className="text-sm">{dayjs(post.createdAt).fromNow()}</span>
-              <ul className="flex gap-1">
+            <div className="flex gap-2 flex-col xl:flex-row xl:items-center">
+              <div className="flex gap-4 items-center">
+                <AvatarIconWithUser
+                  imageSrc={post.user.image || ''}
+                  userName={post.user.name || ''}
+                />
+                <span className="text-sm">
+                  {dayjs(post.createdAt).fromNow()}
+                </span>
+              </div>
+              <ul className="flex gap-1 flex-1">
                 {post.topics.map((topic) => {
                   return (
                     <li key={topic.id}>
