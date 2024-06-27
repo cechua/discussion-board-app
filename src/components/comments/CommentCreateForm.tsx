@@ -5,15 +5,15 @@ import * as actions from '@/actions';
 import { Textarea } from '@nextui-org/react';
 import FormButton from '../common/button/FormButton';
 
-interface CommentsCreateFormProps {
+interface CommentCreateFormProps {
   postId: string;
   parentCommentId?: string;
 }
 
-const CommentsCreateForm = ({
+const CommentCreateForm = ({
   postId,
   parentCommentId,
-}: CommentsCreateFormProps) => {
+}: CommentCreateFormProps) => {
   // const [formState, action] = useFormState(
   //   actions.createPost.bind(null, Array.from(selectedKeys)),
   //   {
@@ -27,7 +27,7 @@ const CommentsCreateForm = ({
           name="commentMessage"
           label="Add a comment"
           labelPlacement="outside"
-          placeholder="commentMessage"
+          placeholder="comment"
           // isInvalid={!!formState.errors.commentMessage}
           // errorMessage={formState.errors.commentMessage?.join(', ')}
         />
@@ -37,4 +37,4 @@ const CommentsCreateForm = ({
   );
 };
 
-export default CommentsCreateForm;
+export default CommentCreateForm;

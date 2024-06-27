@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import CommentsList from '../comments/CommentsList';
-import CommentsCreateForm from '../comments/CommentsCreateForm';
+import CommentList from '../comments/CommentList';
+import CommentCreateForm from '../comments/CommentCreateForm';
 dayjs.extend(relativeTime);
 interface PostShowProps {
   post: PostWithData;
@@ -50,8 +50,8 @@ const PostShow = ({ post }: PostShowProps) => {
 
         <p className="flex-1 hover:cursor-pointer pt-2">{post.content}</p>
         <div className="mt-8 xl:mt-16">
-          <CommentsCreateForm postId={post.id} />
-          <CommentsList postId={post.id} />
+          <CommentCreateForm postId={post.id} />
+          <CommentList postId={post.id} />
         </div>
       </div>
     </div>

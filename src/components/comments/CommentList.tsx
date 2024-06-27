@@ -1,10 +1,11 @@
 import { fetchComments } from '@/db/queries/comments';
+import CommentItem from './CommentItem';
 
-interface CommentsListProps {
+interface CommentListProps {
   postId: string;
 }
 
-export default async function CommentsList({ postId }: CommentsListProps) {
+export default async function CommentList({ postId }: CommentListProps) {
   const comments = await fetchComments(postId);
   const topLevelComments = comments.filter(
     (comment) => comment.parentId === null
@@ -15,7 +16,11 @@ export default async function CommentsList({ postId }: CommentsListProps) {
       <h1 className="text-md font-bold">{comments.length} comments</h1>
       <ul>
         {topLevelComments.map((comment) => (
-          <li key={comment.id}>{comment.commentMessage}</li>
+          <CommentItem
+            postId={comment.postId}
+            commentId={comment.id}
+            key={comment.id}
+          />
         ))}
       </ul>
     </div>
