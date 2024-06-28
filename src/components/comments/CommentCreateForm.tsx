@@ -8,11 +8,13 @@ import FormButton from '../common/button/FormButton';
 interface CommentCreateFormProps {
   postId: string;
   parentCommentId?: string;
+  isChild?: boolean;
 }
 
 const CommentCreateForm = ({
   postId,
   parentCommentId,
+  isChild,
 }: CommentCreateFormProps) => {
   // const [formState, action] = useFormState(
   //   actions.createPost.bind(null, Array.from(selectedKeys)),
@@ -22,16 +24,18 @@ const CommentCreateForm = ({
   // );
   return (
     <div>
-      <form>
+      <form className="flex flex-col gap-2">
         <Textarea
           name="commentMessage"
-          label="Add a comment"
+          label="Add a comment:"
           labelPlacement="outside"
-          placeholder="comment"
+          placeholder=""
           // isInvalid={!!formState.errors.commentMessage}
           // errorMessage={formState.errors.commentMessage?.join(', ')}
         />
-        <FormButton>Comment</FormButton>
+        <FormButton classNames="w-36" color="primary" variant="ghost">
+          Comment
+        </FormButton>
       </form>
     </div>
   );

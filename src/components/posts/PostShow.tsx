@@ -8,6 +8,7 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import CommentList from '../comments/CommentList';
 import CommentCreateForm from '../comments/CommentCreateForm';
 dayjs.extend(relativeTime);
+
 interface PostShowProps {
   post: PostWithData;
 }

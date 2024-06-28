@@ -3,6 +3,7 @@ import React from 'react';
 import CommentCreateForm from './CommentCreateForm';
 import AvatarIconWithUser from '../common/AvatarIconWithUser';
 import DateCreatedLabel from '../common/DateCreatedLabel';
+import CommentShowFormButton from './CommentShowFormButton';
 
 interface CommentItemProps {
   commentId: string;
@@ -46,7 +47,12 @@ const CommentItem = async ({
         <div className="flex-1 space-y-3">
           <p className="text-gray-900">{comment.commentMessage}</p>
 
-          {!isChild && (
+          {isChild ? (
+            <CommentShowFormButton
+              postId={comment.postId}
+              parentCommentId={comment.id}
+            />
+          ) : (
             <CommentCreateForm
               postId={comment.postId}
               parentCommentId={comment.id}

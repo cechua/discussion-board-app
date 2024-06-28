@@ -225,6 +225,17 @@ async function createInitialComments() {
       parentId: '1',
     },
   });
+  const technologyCommentToCommentToComment = await prisma.comment.upsert({
+    where: { id: '4' },
+    update: {},
+    create: {
+      id: '4',
+      postId: '1',
+      commentMessage: 'Agreed!',
+      userId: '4',
+      parentId: '2',
+    },
+  });
   const technologyPostComments2 = await prisma.comment.upsert({
     where: { id: '3' },
     update: {},
