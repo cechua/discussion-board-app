@@ -62,7 +62,7 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
 
         <Link
           href={`/posts/${post.id}`}
-          className="mt-4 text-center w-1/6 border-2 rounded-full border-primary-300 hover:bg-primary-300 hover:text-white"
+          className="mt-4 text-center w-1/6 border-2 rounded-full border-primary-300 text-primary-500 hover:bg-primary-300 hover:text-white"
         >
           <span>{post._count.comments} comments</span>
         </Link>
