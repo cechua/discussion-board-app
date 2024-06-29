@@ -12,7 +12,7 @@ export default async function CommentList({ postId }: CommentListProps) {
   );
 
   return (
-    <div className="mt-8">
+    <div className="my-4">
       <h1 className="text-md font-bold">{comments.length} comments</h1>
       <ul>
         {topLevelComments.map((comment) => (

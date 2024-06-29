@@ -6,9 +6,9 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
+  Button,
 } from '@nextui-org/react';
 import AvatarIconWithUser from '../common/AvatarIconWithUser';
-import Link from 'next/link';
 import { PostWithData } from '@/db/queries/posts';
 import TopicChip from '../common/TopicChip';
 
@@ -16,9 +16,15 @@ interface PostModalProps {
   isOpen: boolean;
   onOpenChange: () => void;
   post: PostWithData;
+  handleRedirectToPost: (postId: string) => void;
 }
 
-const PostModal = ({ isOpen, onOpenChange, post }: PostModalProps) => {
+const PostModal = ({
+  isOpen,
+  onOpenChange,
+  post,
+  handleRedirectToPost,
+}: PostModalProps) => {
   return (
     <>
       <Modal
@@ -30,16 +36,18 @@ const PostModal = ({ isOpen, onOpenChange, post }: PostModalProps) => {
           base: 'min-h-96 max-h-[48rem] overflow',
           header: 'flex justify-center',
           body: 'border-y-2',
+          footer: 'justify-start',
         }}
       >
         <ModalContent>
           <ModalHeader className="flex flex-col gap-1">
             <div className="flex gap-4 items-center">
-              <Link href={`/posts/${post.id}`}>
-                <h3 className="font-bold text-lg capitalize hover:underline cursor-pointer">
-                  {post.title}
-                </h3>
-              </Link>
+              <h3
+                className="font-bold text-lg capitalize hover:underline cursor-pointer"
+                onClick={() => handleRedirectToPost(post.id)}
+              >
+                {post.title}
+              </h3>
               <AvatarIconWithUser
                 imageSrc={post.user.image || ''}
                 userName={post.user.name || ''}
@@ -63,7 +71,14 @@ const PostModal = ({ isOpen, onOpenChange, post }: PostModalProps) => {
           <ModalBody>
             <section>{post.content}</section>
           </ModalBody>
-          <ModalFooter>{/*Add comment component here */}</ModalFooter>
+          <ModalFooter>
+            <Button
+              className="text-center w-1/6 border-2 rounded-full border-primary-300 text-primary-500 bg-transparent hover:bg-primary-300 hover:text-white"
+              onClick={() => handleRedirectToPost(post.id)}
+            >
+              <span>{post._count.comments} comments</span>
+            </Button>
+          </ModalFooter>
         </ModalContent>
       </Modal>
     </>

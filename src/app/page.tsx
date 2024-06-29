@@ -1,6 +1,8 @@
 import PostList from '@/components/posts/PostList';
+import RecentPosts from '@/components/posts/RecentPosts';
 import TopicList from '@/components/topics/TopicList';
 import { fetchAllPosts } from '@/db/queries/posts';
+import { Suspense } from 'react';
 
 export default function Home() {
   return (
@@ -22,9 +24,9 @@ export default function Home() {
         </div>
       </div>
       <div className="flex flex-col items-center pt-4 collapse col-span-3 xl:visible">
-        <div className="w-4/5">
+        <div className="w-full xl:px-4">
           <h1 className="text-xl font-bold mb-4 h-8">Recently Viewed Posts</h1>
-          <PostList fetchPosts={() => fetchAllPosts()} isSideContent />
+          <RecentPosts />
         </div>
       </div>
     </div>

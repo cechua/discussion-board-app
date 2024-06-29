@@ -1,13 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { useDisclosure } from '@nextui-org/react';
+import { Button, useDisclosure } from '@nextui-org/react';
 import AvatarIconWithUser from '../common/AvatarIconWithUser';
 import PostModal from './PostModal';
 import TopicChip from '../common/TopicChip';
 import { PostWithData } from '@/db/queries/posts';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { redirect, useRouter } from 'next/navigation';
+import { localStorageKeyNames } from '@/enums/localStorageKeyNames';
 dayjs.extend(relativeTime);
 interface PostItemProps {
   post: PostWithData;
@@ -16,6 +18,25 @@ interface PostItemProps {
 
 const PostItem = ({ post, isSideContent }: PostItemProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const router = useRouter();
+  const handleRedirectToPost = (postId: string) => {
+    const existingPostIds = localStorage.getItem(
+      localStorageKeyNames.LOCALSTORAGE_RECENT_POSTS_IDS
+    );
+    const parsedPostIds = existingPostIds ? JSON.parse(existingPostIds) : [];
+    const uniquePostIds =
+      parsedPostIds.length > 0
+        ? parsedPostIds.find((id: string) => id === post.id)
+          ? parsedPostIds
+          : [...parsedPostIds, post.id]
+        : [post.id];
+    let updatedPostIds = JSON.stringify(uniquePostIds);
+    localStorage.setItem(
+      localStorageKeyNames.LOCALSTORAGE_RECENT_POSTS_IDS,
+      updatedPostIds
+    );
+    router.push(`/posts/${postId}`);
+  };
   const mainContentPostSummary = (
     <>
       <div className="flex flex-col hover:bg-gray-200 rounded-md min-h-32 justify-between p-0 py-2 xl:p-2">
@@ -60,14 +81,19 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
           {post.content}
         </p>
 
-        <Link
-          href={`/posts/${post.id}`}
-          className="mt-4 text-center w-1/6 border-2 rounded-full border-primary-300 text-primary-500 hover:bg-primary-300 hover:text-white"
+        <Button
+          className="mt-4 text-center w-1/6 border-2 rounded-full border-primary-300 text-primary-500 bg-transparent hover:bg-primary-300 hover:text-white"
+          onClick={() => handleRedirectToPost(post.id)}
         >
           <span>{post._count.comments} comments</span>
-        </Link>
+        </Button>
       </div>
-      <PostModal isOpen={isOpen} onOpenChange={onOpenChange} post={post} />
+      <PostModal
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        post={post}
+        handleRedirectToPost={handleRedirectToPost}
+      />
     </>
   );
 
@@ -75,11 +101,12 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
     <div className="flex flex-col hover:bg-gray-100 p-2 rounded-md min-h-20 justify-between">
       <div className="flex flex-col pb-2">
         <div className="flex flex-col gap-2">
-          <Link href={`/posts/${post.id}`}>
-            <h3 className="font-bold text-lg capitalize hover:underline">
-              {post.title}
-            </h3>
-          </Link>
+          <h3
+            className="font-bold text-lg capitalize hover:underline hover:cursor-pointer"
+            onClick={() => handleRedirectToPost(post.id)}
+          >
+            {post.title}
+          </h3>
           <ul className="flex gap-1">
             {post.topics.map((topic) => {
               return (
