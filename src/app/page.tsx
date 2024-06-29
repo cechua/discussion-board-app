@@ -2,7 +2,7 @@ import PostList from '@/components/posts/PostList';
 import RecentPosts from '@/components/posts/RecentPosts';
 import TopicList from '@/components/topics/TopicList';
 import { fetchAllPosts } from '@/db/queries/posts';
-import { Suspense } from 'react';
+import { fetchTopics } from '@/db/queries/topics';
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
       <div className="flex flex-col items-center border-r-2 pt-4 collapse col-span-2 xl:visible">
         <div>
           <h1 className="text-xl font-bold mb-4 h-8">Available Topics</h1>
-          <TopicList />
+          <TopicList fetchTopics={() => fetchTopics()} />
         </div>
         {/* <div>
           <h1 className="text-xl font-bold my-2 h-8">Trending Posts</h1>

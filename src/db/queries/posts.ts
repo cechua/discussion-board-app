@@ -68,3 +68,27 @@ export function fetchPostById(postId: string) {
     },
   });
 }
+
+export function fetchPostByTerm(searchQuery: string): Promise<PostWithData[]> {
+  return db.post.findMany({
+    where: {
+      OR: [
+        { title: { contains: searchQuery } },
+        { content: { contains: searchQuery } },
+        { topics: { some: { topicName: { contains: searchQuery } } } },
+      ],
+    },
+    include: {
+      topics: {
+        select: {
+          id: true,
+          topicName: true,
+          backgroundColor: true,
+          textColor: true,
+        },
+      },
+      user: { select: { name: true, image: true } },
+      _count: { select: { comments: true } },
+    },
+  });
+}
