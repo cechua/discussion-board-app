@@ -21,7 +21,7 @@ const CommentShowFormButton = ({
           setShowCommentForm((showCommentForm) => !showCommentForm)
         }
         color="primary"
-        variant="light"
+        variant="flat"
       >
         reply
       </Button>
