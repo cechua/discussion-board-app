@@ -9,6 +9,7 @@ export type PostWithData = Post & {
     textColor: string;
   }[];
   user: { name: string | null; image: string | null };
+  _count: { comments: number };
 };
 
 export function fetchAllPosts(): Promise<PostWithData[]> {
@@ -23,6 +24,7 @@ export function fetchAllPosts(): Promise<PostWithData[]> {
         },
       },
       user: { select: { name: true, image: true } },
+      _count: { select: { comments: true } },
     },
   });
 }
@@ -42,6 +44,7 @@ export function fetchPostsByTopic(topicName: string): Promise<PostWithData[]> {
         },
       },
       user: { select: { name: true, image: true } },
+      _count: { select: { comments: true } },
     },
   });
 }
@@ -61,6 +64,7 @@ export function fetchPostById(postId: string) {
         },
       },
       user: { select: { name: true, image: true } },
+      _count: { select: { comments: true } },
     },
   });
 }

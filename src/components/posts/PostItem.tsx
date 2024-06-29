@@ -59,7 +59,13 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
         <p className="flex-1 hover:cursor-pointer pt-2" onClick={onOpen}>
           {post.content}
         </p>
-        <p onClick={onOpen}>2 comments</p>
+
+        <Link
+          href={`/posts/${post.id}`}
+          className="mt-4 text-center w-1/6 border-2 rounded-full border-primary-300 hover:bg-primary-300 hover:text-white"
+        >
+          <span>{post._count.comments} comments</span>
+        </Link>
       </div>
       <PostModal isOpen={isOpen} onOpenChange={onOpenChange} post={post} />
     </>
