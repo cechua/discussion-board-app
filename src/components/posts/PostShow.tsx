@@ -16,7 +16,7 @@ const PostShow = ({ post }: PostShowProps) => {
   if (!post) notFound();
   return (
     <div className="flex justify-center">
-      <div className="flex flex-col justify-center w-3/5 border-1 rounded-md min-h-32 p-0 py-2 xl:p-2 xl:mt-8">
+      <div className="flex flex-col justify-center w-3/5 border-1 rounded-md min-h-32 p-0 py-2 xl:px-12">
         <div className="flex flex-col ">
           <div className="flex flex-col items-start xl:flex-row xl:items-center xl:gap-4">
             <h3 className="font-bold text-lg capitalize">{post.title}</h3>

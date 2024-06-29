@@ -14,6 +14,9 @@ export const fetchComments = cache(
       include: {
         user: { select: { name: true, image: true } },
       },
+      orderBy: {
+        createdAt: 'desc',
+      },
     });
   }
 );
