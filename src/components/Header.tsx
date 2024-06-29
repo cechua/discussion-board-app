@@ -15,8 +15,10 @@ import {
   useDisclosure,
 } from '@nextui-org/react';
 import HeaderProfile from './users/headerProfile';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { AddIcon } from './common/SvgIcons/AddIcon';
+import SearchInput from './SearchInput';
+import { SearchIcon } from './common/SvgIcons/SearchIcon';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -36,7 +38,9 @@ const Header = () => {
         </Link>
       </NavbarBrand>
       <NavbarContent justify="center" className="hidden sm:flex">
-        <Input type="text" placeholder="searchinputhere" />
+        <Suspense>
+          <SearchInput />
+        </Suspense>
       </NavbarContent>
 
       <NavbarContent justify="end" className="hidden sm:flex">
@@ -54,22 +58,22 @@ const Header = () => {
 
       {/*Mobile View */}
 
-      <NavbarContent justify="center" className="flex sm:hidden">
+      <NavbarContent justify="end" className="flex gap-6 sm:hidden">
         <Popover placement="bottom">
           <PopoverTrigger>
-            {/*TODO: Change to search icon */}
-            <Button>Search</Button>
+            <Button variant="light" isIconOnly className="bg-transparent">
+              <SearchIcon filled fill="#006FEE" />
+            </Button>
           </PopoverTrigger>
           <PopoverContent>
-            <Input type="text" placeholder="searchinputhere" />
+            <Suspense>
+              <SearchInput />
+            </Suspense>
           </PopoverContent>
         </Popover>
         <Link href="/posts/new" onClick={() => setIsMenuOpen(false)}>
           <AddIcon fill="#006FEE" filled />
         </Link>
-      </NavbarContent>
-
-      <NavbarContent justify="end" className="flex sm:hidden">
         <HeaderProfile />
       </NavbarContent>
     </Navbar>
