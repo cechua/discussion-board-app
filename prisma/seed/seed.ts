@@ -104,7 +104,7 @@ async function createInitialMockUsers() {
 }
 
 async function createInitialTopics() {
-  const technologyTopic = await prisma.topic.upsert({
+  await prisma.topic.upsert({
     where: { topicName: 'technology' },
     update: {},
     create: {
@@ -116,7 +116,7 @@ async function createInitialTopics() {
       textColor: 'ffffff',
     },
   });
-  const worldNewsTopic = await prisma.topic.upsert({
+  await prisma.topic.upsert({
     where: { topicName: 'worldnews' },
     update: {},
     create: {
@@ -127,7 +127,7 @@ async function createInitialTopics() {
       textColor: 'ffffff',
     },
   });
-  const foodTopic = await prisma.topic.upsert({
+  await prisma.topic.upsert({
     where: { topicName: 'food' },
     update: {},
     create: {
@@ -138,7 +138,7 @@ async function createInitialTopics() {
       textColor: 'ffffff',
     },
   });
-  const sportsTopic = await prisma.topic.upsert({
+  await prisma.topic.upsert({
     where: { topicName: 'sports' },
     update: {},
     create: {
@@ -149,7 +149,7 @@ async function createInitialTopics() {
       textColor: 'ffffff',
     },
   });
-  const moviesTopic = await prisma.topic.upsert({
+  await prisma.topic.upsert({
     where: { topicName: 'movies' },
     update: {},
     create: {
@@ -160,7 +160,7 @@ async function createInitialTopics() {
       textColor: '000000',
     },
   });
-  const tvshowTopic = await prisma.topic.upsert({
+  await prisma.topic.upsert({
     where: { topicName: 'tvshow' },
     update: {},
     create: {
@@ -171,7 +171,7 @@ async function createInitialTopics() {
       textColor: 'ffffff',
     },
   });
-  const musicTopic = await prisma.topic.upsert({
+  await prisma.topic.upsert({
     where: { topicName: 'music' },
     update: {},
     create: {
@@ -184,8 +184,8 @@ async function createInitialTopics() {
   });
 }
 
-async function createInitialPosts() {
-  const technologyPost = await prisma.post.upsert({
+async function createInitialPostsandComments() {
+  const post1 = await prisma.post.upsert({
     where: { id: '1' },
     update: {},
     create: {
@@ -198,54 +198,54 @@ async function createInitialPosts() {
         connect: [{ id: '1' }, { id: '2' }],
       },
     },
+    include: {
+      topics: true,
+    },
   });
-}
-
-async function createInitialComments() {
-  const technologyPostComments = await prisma.comment.upsert({
+  const comment1 = await prisma.comment.upsert({
     where: { id: '1' },
     update: {},
     create: {
       id: '1',
-      postId: '1',
+      postId: post1.id,
       commentMessage: 'Very excited for the upcoming years about tech!',
       userId: '1',
       parentId: null,
     },
   });
-  const technologyCommentToComment = await prisma.comment.upsert({
+  const comment2 = await prisma.comment.upsert({
     where: { id: '2' },
     update: {},
     create: {
       id: '2',
-      postId: '1',
+      postId: post1.id,
       commentMessage:
-        'Same, Particularly the innovation to automotives and self-driving!',
+        'Please post more on all the updates about iPhone for the coming years. Cheers',
       userId: '2',
-      parentId: '1',
+      parentId: null,
     },
   });
-  const technologyCommentToCommentToComment = await prisma.comment.upsert({
-    where: { id: '4' },
-    update: {},
-    create: {
-      id: '4',
-      postId: '1',
-      commentMessage: 'Agreed!',
-      userId: '4',
-      parentId: '2',
-    },
-  });
-  const technologyPostComments2 = await prisma.comment.upsert({
+  await prisma.comment.upsert({
     where: { id: '3' },
     update: {},
     create: {
       id: '3',
-      postId: '1',
+      postId: post1.id,
       commentMessage:
-        'Please post more on all the updates about iPhone for the coming years. Cheers',
+        'Same, Particularly the innovation to automotives and self-driving!',
       userId: '3',
-      parentId: null,
+      parentId: comment1.id,
+    },
+  });
+  await prisma.comment.upsert({
+    where: { id: '4' },
+    update: {},
+    create: {
+      id: '4',
+      postId: post1.id,
+      commentMessage: 'Agreed!',
+      userId: '4',
+      parentId: comment1.id,
     },
   });
 }
@@ -255,10 +255,7 @@ createInitialMockUsers()
     createInitialTopics();
   })
   .then(async () => {
-    createInitialPosts();
-  })
-  .then(async () => {
-    createInitialComments();
+    createInitialPostsandComments();
   })
   .then(async () => {
     await prisma.$disconnect();

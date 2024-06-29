@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -77,8 +77,7 @@ model Topic {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Post   Post?   @relation(fields: [postId], references: [id])
-  postId String?
+  posts        Post[]
 }
 
 model Post {
@@ -86,13 +85,14 @@ model Post {
   title     String
   content   String
   userId    String
-  topics    Topic[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id])
   comments Comment[]
+  topics Topic[]
 }
+
 
 model Comment {
   id       String  @id @default(cuid())
