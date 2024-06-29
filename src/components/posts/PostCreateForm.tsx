@@ -36,7 +36,7 @@ const PostCreateForm = ({ topics }: PostCreateFormProps) => {
     <div className="flex justify-center">
       <form
         action={action}
-        className="flex flex-col w-1/2 gap-4 p-8 border border-2-solid rounded-2"
+        className="flex flex-col gap-4 border border-2-solid rounded-2 w-full mx-4 p-4 xl:w-1/2 xl:p-8"
         noValidate /*Needed to allow Zod to do the validation, not having this causes issue of submit button would not work once error is returned(isInvalid is true) */
       >
         <h1 className="font-bold text-2xl">Create a Post</h1>
@@ -50,6 +50,7 @@ const PostCreateForm = ({ topics }: PostCreateFormProps) => {
             onChange={(e) => setInputFilterTopic(e.target.value)}
             onClick={() => setShowListBox(true)}
             onFocusChange={() => setShowListBox(false)}
+            autoComplete="off"
           />
           {showListBox && (
             <div className="flex absolute w-full z-50 bg-slate-50 max-h-36 overflow-auto">
