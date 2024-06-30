@@ -11,6 +11,7 @@ import {
 import { signOut, useSession } from 'next-auth/react';
 import { SignIn } from './signInForm';
 import { authProviders } from '@/enums/authproviders';
+import Link from 'next/link';
 
 export default function HeaderProfile() {
   const session = useSession();
@@ -34,6 +35,9 @@ export default function HeaderProfile() {
           <Avatar src={session.data.user.image || ''} />
         </PopoverTrigger>
         <PopoverContent>
+          <Link href="/user/posts">
+            <Button>My Posts</Button>
+          </Link>
           <Button onClick={() => signOutHandler()}>Sign Out</Button>
         </PopoverContent>
       </Popover>

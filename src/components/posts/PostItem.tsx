@@ -10,13 +10,15 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { redirect, useRouter } from 'next/navigation';
 import { localStorageKeyNames } from '@/enums/localStorageKeyNames';
+import PostDeleteButton from './PostDeleteButton';
 dayjs.extend(relativeTime);
 interface PostItemProps {
   post: PostWithData;
   isSideContent?: boolean;
+  showDeleteButton?: boolean;
 }
 
-const PostItem = ({ post, isSideContent }: PostItemProps) => {
+const PostItem = ({ post, isSideContent, showDeleteButton }: PostItemProps) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
   const handleRedirectToPost = (postId: string) => {
@@ -74,6 +76,11 @@ const PostItem = ({ post, isSideContent }: PostItemProps) => {
                 })}
               </ul>
             </div>
+            {showDeleteButton && (
+              <div className="grow ">
+                <PostDeleteButton postId={post.id} />
+              </div>
+            )}
           </div>
         </div>
 

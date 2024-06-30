@@ -1,3 +1,4 @@
+import { auth } from '@/auth';
 import { db } from '..';
 import type { Post } from '@prisma/client';
 
@@ -14,6 +15,26 @@ export type PostWithData = Post & {
 
 export function fetchAllPosts(): Promise<PostWithData[]> {
   return db.post.findMany({
+    include: {
+      topics: {
+        select: {
+          id: true,
+          topicName: true,
+          backgroundColor: true,
+          textColor: true,
+        },
+      },
+      user: { select: { name: true, image: true } },
+      _count: { select: { comments: true } },
+    },
+  });
+}
+
+export async function fetchAllPostsByUser(
+  userId: string
+): Promise<PostWithData[]> {
+  return db.post.findMany({
+    where: { userId: userId },
     include: {
       topics: {
         select: {
