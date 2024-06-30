@@ -6,7 +6,7 @@ import { Button } from '@nextui-org/react';
 interface FormButtonProps {
   children: React.ReactNode;
   classNames?: string;
-  color?: 'default' | 'primary' | 'secondary';
+  color?: 'default' | 'primary' | 'secondary' | 'danger';
   variant?: 'flat' | 'solid' | 'bordered' | 'light' | 'ghost';
 }
 
